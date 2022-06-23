@@ -1,0 +1,93 @@
+# Server Configs
+server:
+  port: 7000
+
+# Dev Configs
+# Spring Boot Configs
+spring:
+  profiles: dev
+  application:
+    name: Online Grocery Platform Back End
+  main:
+    # This configuration is needed since spring boot 2.1.X if JPAAuditing is enabled. This is false on default so no accidental
+    # overrides will occur and if beans are to be overridden, this has to be enabled. - https://stackoverflow.com/questions/53723303/springboot-beandefinitionoverrideexception-invalid-bean-definition
+    allow-bean-definition-overriding: true
+
+  # Datasource Settings
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    #url: ${DB_URL:jdbc:postgresql://localhost:5432/grocery_platform}
+    #username: ${DB_USER:amigoscode}
+    #password: ${DB_PASSWORD:password}
+    url: ${DB_URL:jdbc:postgresql://ec2-44-197-128-108.compute-1.amazonaws.com:5432/d46dvoti2scmfp}
+    username: ${DB_USER:lpxcjuvvwcjqvo}
+    password: ${DB_PASSWORD:c688de33e516e2d1a40abb9104835a08d81dfc06e710a4093af994279d835855}
+    #maxActive: 5 (This can be removed I guess. It has no effect or is deprecated)
+
+    # Connection Pool Settings
+    hikari:
+      pool-name: grocery_platform-hikari
+      maximum-pool-size: 8
+      minimum-idle: 5
+      keepalive-time: 120000
+      connection-timeout: 30000
+      idle-timeout: 600000
+      max-lifetime: 300000
+
+  # JPA Settings
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: none
+    properties:
+      hibernate:
+        physical_naming_strategy: lk.grocery.platform.config.PhysicalNamingStrategyImpl
+        default_schema: "GROCERY_PLATFORM"
+        temp:
+          use_jdbc_metadata_defaults: false
+        proc:
+          param_null_passing: true
+      org:
+        hibernate:
+          envers:
+            default_schema: "AUDIT"
+            store_data_at_delete: true
+    database-platform: org.hibernate.spatial.dialect.postgis.PostgisDialect
+    open-in-view: true
+
+  security:
+    signing-key: 8x/A?D(G+KbPeSgVkYp3s6v9y$B&E)H@McQfTjWmZq4t7w!z%C*F-JaNdRgUkXp2
+    encoding-strength: 256
+    security-realm: Grocery_platform-Web
+    jwt:
+      client-id: groceryplatformweb
+      client-secret: 8x/A?D(G+KbPeSgVkYp3s6v9y$B&E)H@McQfTjWmZq4t7w!z%C*F-JaNdRgUkXp2
+      grant-type: password
+      scope-read: read
+      scope-write: write
+      resource-ids: Grocery_platform-WebResource
+
+email:
+  callback:
+    host: ${HOST_IP:http://lakderana-hms-web.herokuapp.com/auth/reset-password}
+    port: 80
+
+reset:
+  mobile:
+    number: 0711111111
+
+mail:
+  host: smtp.gmail.com
+  port: 587
+  username: lakderanahms@gmail.com
+  password: asfdw532d#
+  senderName: Lak Derana
+  properties:
+    mail:
+      smtp:
+        socketFactory:
+          port: 465
+          class: javax.net.ssl.SSLSocketFactory
+        auth: true
+        starttls:
+          enable: true
