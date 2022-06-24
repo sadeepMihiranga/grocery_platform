@@ -15,7 +15,7 @@ public class TMsUserBranch {
 
     @Id
     @GeneratedValue(generator = "UserBranchSequence")
-    @SequenceGenerator(name = "UserBranchSequence", schema = "LAKDERANA_BASE", sequenceName = "\"T_RF_BRANCH_BRNH_ID_seq\"", allocationSize = 1)
+    @SequenceGenerator(name = "UserBranchSequence", schema = "GROCERY_PLATFORM", sequenceName = "\"T_RF_BRANCH_BRNH_ID_seq\"", allocationSize = 1)
     @Column(name = "USBR_ID")
     private Long usbrId;
 
