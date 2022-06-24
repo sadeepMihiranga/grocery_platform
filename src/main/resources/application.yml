@@ -42,7 +42,8 @@ spring:
     properties:
       hibernate:
         physical_naming_strategy: lk.grocery.platform.config.PhysicalNamingStrategyImpl
-        default_schema: "GROCERY_PLATFORM"
+        #default_schema: "GROCERY_PLATFORM"
+        default_schema: "public"
         temp:
           use_jdbc_metadata_defaults: false
         proc:

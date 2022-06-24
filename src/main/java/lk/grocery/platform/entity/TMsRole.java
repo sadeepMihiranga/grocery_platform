@@ -16,7 +16,8 @@ public class TMsRole {
 
     @javax.persistence.Id
     @GeneratedValue(generator = "RoleSequence")
-    @SequenceGenerator(name = "RoleSequence", schema = "GROCERY_PLATFORM", sequenceName = "\"T_MS_ROLE_ID_seq\"", allocationSize = 1)
+    //@SequenceGenerator(name = "RoleSequence", schema = "GROCERY_PLATFORM", sequenceName = "\"T_MS_ROLE_ID_seq\"", allocationSize = 1)
+    @SequenceGenerator(name = "RoleSequence", schema = "public", sequenceName = "\"T_MS_ROLE_ID_seq\"", allocationSize = 1)
     @Column(name = "ROLE_ID")
     private Long roleId;
 
