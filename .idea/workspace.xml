@@ -5,13 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1ecab856-a4bc-4e36-9730-875a92052b4f" name="Changes" comment="schema changes">
-      <change beforePath="$PROJECT_DIR$/src/main/java/lk/grocery/platform/entity/TMsPartyContact.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/grocery/platform/entity/TMsPartyContact.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/lk/grocery/platform/entity/TMsRole.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/grocery/platform/entity/TMsRole.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/lk/grocery/platform/entity/TMsRoleFunction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/grocery/platform/entity/TMsRoleFunction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/lk/grocery/platform/entity/TMsUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/grocery/platform/entity/TMsUser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/lk/grocery/platform/entity/TMsUserBranch.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/grocery/platform/entity/TMsUserBranch.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/lk/grocery/platform/entity/TMsUserRole.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/grocery/platform/entity/TMsUserRole.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/lk/grocery/platform/entity/TRfBranch.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/grocery/platform/entity/TRfBranch.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -99,7 +93,7 @@
       <updated>1655992999048</updated>
       <workItem from="1655993002627" duration="208000" />
       <workItem from="1655993383658" duration="4939000" />
-      <workItem from="1656034599916" duration="2914000" />
+      <workItem from="1656034599916" duration="4720000" />
     </task>
     <task id="LOCAL-00001" summary="build issue fixes.">
       <created>1655995672103</created>
@@ -157,7 +151,14 @@
       <option name="project" value="LOCAL" />
       <updated>1656036811909</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="schema changes">
+      <created>1656040807129</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1656040807129</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

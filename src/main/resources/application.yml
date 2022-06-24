@@ -19,9 +19,9 @@ spring:
     #url: ${DB_URL:jdbc:postgresql://localhost:5432/grocery_platform}
     #username: ${DB_USER:amigoscode}
     #password: ${DB_PASSWORD:password}
-    url: ${DB_URL:jdbc:postgresql://ec2-44-197-128-108.compute-1.amazonaws.com:5432/d46dvoti2scmfp}
-    username: ${DB_USER:lpxcjuvvwcjqvo}
-    password: ${DB_PASSWORD:c688de33e516e2d1a40abb9104835a08d81dfc06e710a4093af994279d835855}
+    url: ${DB_URL:jdbc:postgresql://ec2-44-197-128-108.compute-1.amazonaws.com:5432/d875keuu72k9b1}
+    username: ${DB_USER:jforbrpkdivegu}
+    password: ${DB_PASSWORD:f4b03606a172c9a1aa743b2ed3346f610e6635e5d5fc979c2c982840b1e39bd8}
     #maxActive: 5 (This can be removed I guess. It has no effect or is deprecated)
 
     # Connection Pool Settings
@@ -42,8 +42,8 @@ spring:
     properties:
       hibernate:
         physical_naming_strategy: lk.grocery.platform.config.PhysicalNamingStrategyImpl
-        #default_schema: "GROCERY_PLATFORM"
-        default_schema: "public"
+        default_schema: "GROCERY_PLATFORM"
+        #default_schema: "public"
         temp:
           use_jdbc_metadata_defaults: false
         proc:
