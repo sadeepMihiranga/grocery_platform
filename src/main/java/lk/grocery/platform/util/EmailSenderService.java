@@ -56,7 +56,7 @@ public class EmailSenderService {
             mimeMessageHelper.setReplyTo(fromEmail);
 
             /* attached files */
-            for (var attachment : emailAttachmentDTOList) {
+            for (EmailAttachmentDTO attachment : emailAttachmentDTOList) {
                 mimeMessageHelper.addAttachment(
                         attachment.getFileName(),
                         new ByteArrayDataSource(attachment.getFile(), attachment.getContentType().toString()));
