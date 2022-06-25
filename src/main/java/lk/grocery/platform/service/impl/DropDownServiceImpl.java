@@ -28,11 +28,13 @@ public class DropDownServiceImpl implements DropDownService {
     private static final String MEASUREMENTS_UNITS = "UOFMS";
     private static final String ITEM_TYPES = "ITMTP";
     private static final String PAYMENT_OPTIONS = "PAYOP";
+    private static final String DELIVERY_OPTIONS = "DILOP";
 
     private final BranchService branchService;
     private final PartyService partyService;
     private final CommonReferenceService commonReferenceService;
     private final PaymentOptionService paymentOptionService;
+    private final DeliveryOptionService deliveryOptionService;
 
     private final FunctionRepository functionRepository;
     private final RoleRepository roleRepository;
@@ -41,12 +43,14 @@ public class DropDownServiceImpl implements DropDownService {
                                PartyService partyService,
                                CommonReferenceService commonReferenceService,
                                PaymentOptionService paymentOptionService,
+                               DeliveryOptionService deliveryOptionService,
                                FunctionRepository functionRepository,
                                RoleRepository roleRepository) {
         this.branchService = branchService;
         this.partyService = partyService;
         this.commonReferenceService = commonReferenceService;
         this.paymentOptionService = paymentOptionService;
+        this.deliveryOptionService = deliveryOptionService;
         this.functionRepository = functionRepository;
         this.roleRepository = roleRepository;
     }
@@ -62,6 +66,7 @@ public class DropDownServiceImpl implements DropDownService {
         dropDownCodes.put("EMPLOYEES", EMPLOYEES);
         dropDownCodes.put("MEASUREMENTS_UNITS", MEASUREMENTS_UNITS);
         dropDownCodes.put("PAYMENT_OPTIONS", PAYMENT_OPTIONS);
+        dropDownCodes.put("DELIVERY_OPTIONS", DELIVERY_OPTIONS);
 
         return dropDownCodes;
     }
@@ -133,6 +138,17 @@ public class DropDownServiceImpl implements DropDownService {
                     paymentOptions.add(new DropDownDTO(
                             paymentOptionDTO.getPaymentOptionId().toString(),
                             paymentOptionDTO.getPaymentOptionName(),
+                            null,
+                            null
+                    ));
+                });
+                break;
+            case DELIVERY_OPTIONS :
+                List<DropDownDTO> deliveryOptions = downDTOList;
+                deliveryOptionService.getDeliveryOptions().forEach(deliveryOptionDTO -> {
+                    deliveryOptions.add(new DropDownDTO(
+                            deliveryOptionDTO.getDeliveryOptionId().toString(),
+                            deliveryOptionDTO.getDeliveryOptionName(),
                             null,
                             null
                     ));
