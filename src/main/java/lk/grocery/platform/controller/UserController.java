@@ -44,14 +44,14 @@ public class UserController {
         return SuccessResponseHandler.generateResponse(userService.createUser(userDTO));
     }
 
+    @PutMapping("/{userId}")
+    public ResponseEntity<SuccessResponse> updateUser(@PathVariable("userId") Long userId, @RequestBody UserDTO userDTO) {
+        return SuccessResponseHandler.generateResponse(userService.updateUser(userId, userDTO));
+    }
+
     @DeleteMapping("/{userId}")
     public ResponseEntity<SuccessResponse> removeUser(@PathVariable("userId") Long userId) {
         return SuccessResponseHandler.generateResponse(userService.removeUserById(userId));
-    }
-
-    @PostMapping("/{userId}/roles/assign")
-    public ResponseEntity<?> assignRoleToUser(@PathVariable("userId") Long userId, @RequestBody List<String> roles) {
-        return SuccessResponseHandler.generateResponse(userService.assignRoleToUser(userId, roles));
     }
 
     @PostMapping("/role")
@@ -59,8 +59,8 @@ public class UserController {
         return ResponseEntity.ok().body(userService.createRole(role));
     }
 
-    @PutMapping("/{userId}")
-    public ResponseEntity<SuccessResponse> updateUser(@PathVariable("userId") Long userId, @RequestBody UserDTO userDTO) {
-        return SuccessResponseHandler.generateResponse(userService.updateUser(userId, userDTO));
+    @PostMapping("/{userId}/roles/assign")
+    public ResponseEntity<?> assignRoleToUser(@PathVariable("userId") Long userId, @RequestBody List<String> roles) {
+        return SuccessResponseHandler.generateResponse(userService.assignRoleToUser(userId, roles));
     }
 }

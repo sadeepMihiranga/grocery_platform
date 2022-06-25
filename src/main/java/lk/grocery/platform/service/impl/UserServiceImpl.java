@@ -329,22 +329,6 @@ public class UserServiceImpl extends EntityValidator implements UserService, Use
             userDTO.setContactList(partyContactService.getContactsByPartyCode(userDTO.getPartyCode(), true));
 
         userDTO.setFunctions(getFunctionsByRoles(userDTO));
-
-        List<BranchDTO> branchList = new ArrayList<>();
-
-        /*final List<TMsUserBranch> userBranches = userBranchRepository
-                .findAllByUser_UserIdAndUsbrStatus(userDTO.getId(), STATUS_ACTIVE.getShortValue());
-
-        userBranches.forEach(tMsUserBranch -> {
-            BranchDTO branchDTO = new BranchDTO();
-
-            branchDTO.setBranchId(tMsUserBranch.getBranch().getBrnhId());
-            branchDTO.setMame(tMsUserBranch.getBranch().getBrnhName());
-
-            branchList.add(branchDTO);
-        });*/
-
-        userDTO.setBranches(branchList);
     }
 
     private List<FunctionDTO> getFunctionsByRoles(UserDTO userDTO) {
@@ -404,10 +388,6 @@ public class UserServiceImpl extends EntityValidator implements UserService, Use
 
         partyCode = partyCode.isEmpty() ? null : partyCode;
 
-        /*final Page<TMsUser> tMsUserPage = userRepository
-                .getActiveUsers(username, partyCode, STATUS_ACTIVE.getShortValue(), captureBranchIds(),
-                        PageRequest.of(page - 1, size));*/
-
         final Page<TMsUser> tMsUserPage = userRepository
                 .getActiveUsers(username, partyCode, STATUS_ACTIVE.getShortValue(),
                         PageRequest.of(page - 1, size));
@@ -430,7 +410,9 @@ public class UserServiceImpl extends EntityValidator implements UserService, Use
 
             userDTO.setRoles(tRfUserRoleList.stream().map(tRfUserRole ->
                     RoleMapper.INSTANCE.entityToDTO(tRfUserRole.getRole())).collect(Collectors.toList()));
-            populateUserReferenceData(userDTO);
+
+            /** disable additional information for search */
+            //populateUserReferenceData(userDTO);
         }
 
         paginatedUserList.setTotalNoOfPages(tMsUserPage.getTotalPages());

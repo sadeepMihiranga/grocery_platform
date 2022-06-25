@@ -157,6 +157,11 @@ public class PartyServiceImpl extends EntityValidator implements PartyService {
 
         tMsParty.setPrtyStatus(STATUS_ACTIVE.getShortValue());
 
+        if(partyDTO.getType().equals(CommonReferenceCodes.PARTY_TYPE_CUSTOMER.getValue())) {
+            tMsParty.setPrtyLongitude(partyDTO.getLongitude());
+            tMsParty.setPrtyLatitude(partyDTO.getLatitude());
+        }
+
         partyDTO.getContactList().forEach(partyContactDTO -> {
             partyContactDTO.setPartyCode(partyCode);
 

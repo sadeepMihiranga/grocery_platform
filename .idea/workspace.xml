@@ -4,16 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1ecab856-a4bc-4e36-9730-875a92052b4f" name="Changes" comment="added delivery options dropdown.">
+    <list default="true" id="1ecab856-a4bc-4e36-9730-875a92052b4f" name="Changes" comment="number generator bug fix.&#10;location info added to party.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/lk/grocery/platform/dto/PartyDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/grocery/platform/dto/PartyDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/lk/grocery/platform/entity/TMsParty.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/grocery/platform/entity/TMsParty.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/lk/grocery/platform/mapper/PartyMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/grocery/platform/mapper/PartyMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/lk/grocery/platform/repository/NumberGeneratorRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/grocery/platform/repository/NumberGeneratorRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/lk/grocery/platform/service/NumberGeneratorService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/grocery/platform/service/NumberGeneratorService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/lk/grocery/platform/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/grocery/platform/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/lk/grocery/platform/service/impl/PartyContactServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/grocery/platform/service/impl/PartyContactServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/lk/grocery/platform/service/impl/PartyServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/grocery/platform/service/impl/PartyServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/lk/grocery/platform/test/TestNumberGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/grocery/platform/test/TestNumberGenerator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/lk/grocery/platform/util/constant/CommonReferenceCodes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/grocery/platform/util/constant/CommonReferenceCodes.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/lk/grocery/platform/service/impl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/grocery/platform/service/impl/UserServiceImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -110,7 +106,7 @@
       <workItem from="1655993383658" duration="4939000" />
       <workItem from="1656034599916" duration="5008000" />
       <workItem from="1656081547249" duration="2588000" />
-      <workItem from="1656122200446" duration="10341000" />
+      <workItem from="1656122200446" duration="12157000" />
     </task>
     <task id="LOCAL-00001" summary="build issue fixes.">
       <created>1655995672103</created>
@@ -196,7 +192,14 @@
       <option name="project" value="LOCAL" />
       <updated>1656125723147</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="number generator bug fix.&#10;location info added to party.">
+      <created>1656136403252</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1656136403252</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -219,6 +222,7 @@
     <MESSAGE value="database changes" />
     <MESSAGE value="added payment type dropdown.&#10;code refactoring." />
     <MESSAGE value="added delivery options dropdown." />
-    <option name="LAST_COMMIT_MESSAGE" value="added delivery options dropdown." />
+    <MESSAGE value="number generator bug fix.&#10;location info added to party." />
+    <option name="LAST_COMMIT_MESSAGE" value="number generator bug fix.&#10;location info added to party." />
   </component>
 </project>
