@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import javax.validation.Valid;
+import javax.validation.constraints.NotBlank;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -18,11 +20,13 @@ public class PartyDTO implements Paginated {
 
     private String partyCode;
     private String name;
+    @NotBlank(message = "First Name is required")
     private String firstName;
     private String lastName;
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate dob;
+    @NotBlank(message = "Address is required")
     private String address1;
     private String address2;
     private String address3;

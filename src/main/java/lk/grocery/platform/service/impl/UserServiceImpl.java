@@ -116,26 +116,6 @@ public class UserServiceImpl extends EntityValidator implements UserService, Use
             });
         }
 
-        if(userDTO.getBranches() != null) {
-            userDTO.getBranches().forEach(branchDTO -> {
-                if(branchDTO != null && branchDTO.getBranchId() != null) {
-                    final TRfBranch tRfBranch = branchRepository
-                            .findByBrnhIdAndBrnhStatus(branchDTO.getBranchId(), STATUS_ACTIVE.getShortValue());
-
-                    if(tRfBranch == null)
-                        throw new DataNotFoundException("Branch not found for the given Id " + branchDTO.getBranchId());
-
-                    /*TMsUserBranch tMsUserBranch = new TMsUserBranch();
-
-                    tMsUserBranch.setUser(createdUser);
-                    tMsUserBranch.setBranch(tRfBranch);
-                    tMsUserBranch.setUsbrStatus(STATUS_ACTIVE.getShortValue());
-
-                    userBranchRepository.save(tMsUserBranch);*/
-                }
-            });
-        }
-
         return getUserById(createdUser.getUserId());
     }
 
@@ -162,19 +142,13 @@ public class UserServiceImpl extends EntityValidator implements UserService, Use
         tMsUser.setUserUsername(userDTO.getUsername());
         persistEntity(tMsUser);
 
-        final Integer inactivatedUserRoleCount = userRoleRepository
-                .inactiveByUserId(tMsUser.getUserId(), STATUS_INACTIVE.getShortValue());
+        userRoleRepository.inactiveByUserId(tMsUser.getUserId(), STATUS_INACTIVE.getShortValue());
 
         userDTO.getRoles().forEach(roleDTO -> {
             newRoleList.add(roleDTO.getName());
         });
 
         assignRoleToUser(userId, newRoleList);
-
-        /*final Integer inactivatedUserBranchCount = userBranchRepository
-                .inactiveByUserId(tMsUser.getUserId(), STATUS_INACTIVE.getShortValue());*/
-
-        //assignBranchToUser(userDTO, tMsUser);
 
         return null;
     }
@@ -470,15 +444,6 @@ public class UserServiceImpl extends EntityValidator implements UserService, Use
             userRoleRepository.save(tMsUserRole);
         });
 
-        /*List<TMsUserBranch> tMsUserBranchList = userBranchRepository
-                .findAllByUser_UserIdAndUsbrStatus(tMsUser.getUserId(), STATUS_ACTIVE.getShortValue());
-
-        tMsUserBranchList.forEach(tMsUserBranch -> {
-            tMsUserBranch.setUsbrStatus(Constants.STATUS_INACTIVE.getShortValue());
-
-            userBranchRepository.save(tMsUserBranch);
-        });*/
-
         return persistEntity(tMsUser).getUserId();
     }
 
@@ -516,19 +481,10 @@ public class UserServiceImpl extends EntityValidator implements UserService, Use
             });
         });
 
-        /*List<Long> branchList = new ArrayList<>();
-        final List<TMsUserBranch> userBranches = userBranchRepository
-                .findAllByUser_UserIdAndUsbrStatus(userInDb.getId(), STATUS_ACTIVE.getShortValue());
-
-        userBranches.forEach(tMsUserBranch -> {
-            branchList.add(tMsUserBranch.getBranch().getBrnhId());
-        });*/
-
         User user = new User();
         user.setId(userInDb.getId());
         user.setName(userInDb.getDisplayName());
         user.setPartyCode(userInDb.getPartyCode());
-        //user.setBranches(branchList);
         user.setUsername(userInDb.getUsername());
         user.setPassword(userInDb.getPassword());
         user.setAuthorities(authorities);

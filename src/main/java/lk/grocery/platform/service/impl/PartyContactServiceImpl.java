@@ -46,6 +46,8 @@ public class PartyContactServiceImpl extends EntityValidator implements PartyCon
         if(Strings.isNullOrEmpty(partyContactDTO.getContactType()))
             throw new NoRequiredInfoException("Contact Type is required");
 
+        validateEntity(partyContactDTO);
+
         if(!isPartyValidated)
             tMsParty = validatePartyCode(partyContactDTO.getPartyCode());
 
