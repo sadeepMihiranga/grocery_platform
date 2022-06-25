@@ -1,12 +1,14 @@
 package lk.grocery.platform.controller;
 
 import lk.grocery.platform.dto.StoreDTO;
-import lk.grocery.platform.dto.UserDTO;
 import lk.grocery.platform.response.SuccessResponse;
 import lk.grocery.platform.response.SuccessResponseHandler;
 import lk.grocery.platform.service.StoreService;
+import lk.grocery.platform.service.VendorStoreService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @CrossOrigin
 @RestController
@@ -14,9 +16,12 @@ import org.springframework.web.bind.annotation.*;
 public class StoreController {
 
     private final StoreService storeService;
+    private final VendorStoreService vendorStoreService;
 
-    public StoreController(StoreService storeService) {
+    public StoreController(StoreService storeService,
+                           VendorStoreService vendorStoreService) {
         this.storeService = storeService;
+        this.vendorStoreService = vendorStoreService;
     }
 
     @PostMapping
@@ -45,5 +50,20 @@ public class StoreController {
                                                              @RequestParam(name = "page", required = true) Integer page,
                                                              @RequestParam(name = "size", required = true) Integer size) {
         return SuccessResponseHandler.generateResponse(storeService.storePaginatedSearch(name, regNo, page, size));
+    }
+
+    @PostMapping("/{storeId}/vendor")
+    public ResponseEntity<SuccessResponse> addVendorsToStore(@PathVariable("storeId") Long storeId, @RequestBody List<String> vendorList) {
+        return SuccessResponseHandler.generateResponse(vendorStoreService.addVendorsToStore(storeId, vendorList));
+    }
+
+    @DeleteMapping("/{storeId}/vendor")
+    public ResponseEntity<SuccessResponse> removeVendorsFromStore(@PathVariable("storeId") Long storeId, @RequestBody List<String> vendorList) {
+        return SuccessResponseHandler.generateResponse(vendorStoreService.removeVendorsFromAStore(storeId, vendorList));
+    }
+
+    @GetMapping("/{storeId}/vendor")
+    public ResponseEntity<SuccessResponse> getAllVendors(@PathVariable("storeId") Long storeId) {
+        return SuccessResponseHandler.generateResponse(vendorStoreService.getVendorsByStoreId(storeId));
     }
 }

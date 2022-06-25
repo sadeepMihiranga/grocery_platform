@@ -3,19 +3,15 @@ package lk.grocery.platform.service.impl;
 import lk.grocery.platform.config.EntityValidator;
 import lk.grocery.platform.dto.PaginatedEntity;
 import lk.grocery.platform.dto.StoreDTO;
-import lk.grocery.platform.dto.UserDTO;
 import lk.grocery.platform.entity.TMsStore;
-import lk.grocery.platform.entity.TMsUser;
-import lk.grocery.platform.entity.TMsUserRole;
 import lk.grocery.platform.exception.DataNotFoundException;
 import lk.grocery.platform.exception.NoRequiredInfoException;
 import lk.grocery.platform.exception.OperationException;
 import lk.grocery.platform.exception.TransactionConflictException;
-import lk.grocery.platform.mapper.RoleMapper;
 import lk.grocery.platform.mapper.StoreMapper;
-import lk.grocery.platform.mapper.UserMapper;
 import lk.grocery.platform.repository.StoreRepository;
 import lk.grocery.platform.service.StoreService;
+import lk.grocery.platform.service.VendorStoreService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -25,7 +21,6 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import static lk.grocery.platform.util.constant.Constants.STATUS_ACTIVE;
 import static lk.grocery.platform.util.constant.Constants.STATUS_INACTIVE;
@@ -35,9 +30,12 @@ import static lk.grocery.platform.util.constant.Constants.STATUS_INACTIVE;
 public class StoreServiceImpl extends EntityValidator implements StoreService {
 
     private final StoreRepository storeRepository;
+    private final VendorStoreService vendorStoreService;
 
-    public StoreServiceImpl(StoreRepository storeRepository) {
+    public StoreServiceImpl(StoreRepository storeRepository,
+                            VendorStoreService vendorStoreService) {
         this.storeRepository = storeRepository;
+        this.vendorStoreService = vendorStoreService;
     }
 
     @Transactional
@@ -125,12 +123,6 @@ public class StoreServiceImpl extends EntityValidator implements StoreService {
         return paginatedStoreList;
     }
 
-    @Transactional
-    @Override
-    public StoreDTO addVendorsToStore(List<String> vendorsCodeList) {
-        return null;
-    }
-
     private TMsStore validateStoreById(Long storeId) {
         if(storeId == null)
             throw new NoRequiredInfoException("Store Id is required");
@@ -145,7 +137,6 @@ public class StoreServiceImpl extends EntityValidator implements StoreService {
 
     private TMsStore persistEntity(TMsStore tMsStore) {
         try {
-            // validateEntity(tMsStore);
             return storeRepository.save(tMsStore);
         } catch (ObjectOptimisticLockingFailureException e) {
             throw new TransactionConflictException("Transaction Updated by Another User.");
