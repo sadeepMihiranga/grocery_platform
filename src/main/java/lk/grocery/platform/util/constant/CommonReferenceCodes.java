@@ -5,6 +5,7 @@ public enum CommonReferenceCodes {
     /** party types */
     PARTY_TYPE_CUSTOMER("CUSTM"),
     PARTY_TYPE_EMPLOYEE("EMPLY"),
+    PARTY_TYPE_VENDOR("VENDR"),
 
     /** party contact types */
     PARTY_CONTACT_MOBILE("CNMBL"),
@@ -40,5 +41,14 @@ public enum CommonReferenceCodes {
 
     public int getIntValue() {
         return intValue;
+    }
+
+    public static CommonReferenceCodes findByString(String codeStringValue){
+        for(CommonReferenceCodes codes : values()){
+            if( codes.getValue().equals(codeStringValue)){
+                return codes;
+            }
+        }
+        return null;
     }
 }

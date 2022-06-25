@@ -17,9 +17,8 @@ public class NumberGeneratorRepository implements NumberGeneratorService {
     /**
      * Call the stored procedure F_CM_GEN_SYS_REF_NUMBER and generate numbers.
      */
-    public String generateNumber(String refNumType, String increase, String subTypeRef1, String subTypeRef2, String subTypeRef3,
-                                 String subTypeRef4, String year, String month) {
-        StoredProcedureQuery storedProcedureQuery = entityManager.createStoredProcedureQuery("\"LAKDERANA_BASE\".\"F_GEN_SYS_REF_NUMBER\"");
+    public String generateNumber(String refNumType, String increase, String subTypeRef1, String subTypeRef2, String year, String month) {
+        StoredProcedureQuery storedProcedureQuery = entityManager.createStoredProcedureQuery("\"GROCERY_PLATFORM\".\"F_GEN_SYS_REF_NUMBER\"");
 
         storedProcedureQuery.registerStoredProcedureParameter(1, String.class, ParameterMode.IN);
         storedProcedureQuery.setParameter(1, refNumType);
@@ -32,12 +31,6 @@ public class NumberGeneratorRepository implements NumberGeneratorService {
 
         storedProcedureQuery.registerStoredProcedureParameter(4, String.class, ParameterMode.IN);
         storedProcedureQuery.setParameter(4, subTypeRef2);
-
-        storedProcedureQuery.registerStoredProcedureParameter(5, String.class, ParameterMode.IN);
-        storedProcedureQuery.setParameter(5, subTypeRef3);
-
-        storedProcedureQuery.registerStoredProcedureParameter(6, String.class, ParameterMode.IN);
-        storedProcedureQuery.setParameter(6, subTypeRef4);
 
         storedProcedureQuery.registerStoredProcedureParameter(7, String.class, ParameterMode.IN);
         storedProcedureQuery.setParameter(7, year);

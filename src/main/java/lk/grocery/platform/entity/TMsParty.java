@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @Entity
@@ -55,4 +56,10 @@ public class TMsParty extends AuditModel {
 
     @Column(name = "PRTY_STATUS")
     private Short prtyStatus;
+
+    @Column(name = "PRTY_LONGITUDE")
+    private BigDecimal prtyLongitude;
+
+    @Column(name = "PRTY_LATITUDE")
+    private BigDecimal prtyLatitude;
 }

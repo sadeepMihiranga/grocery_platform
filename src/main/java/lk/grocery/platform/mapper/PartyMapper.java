@@ -30,7 +30,9 @@ public interface PartyMapper {
             @Mapping(source = "createdDate", target = "createdDate"),
             @Mapping(source = "lastModDate", target = "lastUpdatedDate"),
             @Mapping(source = "createdUserCode", target = "createdUserCode"),
-            @Mapping(source = "lastModUserCode", target = "lastUpdatedUserCode")
+            @Mapping(source = "lastModUserCode", target = "lastUpdatedUserCode"),
+            @Mapping(source = "prtyLongitude", target = "longitude"),
+            @Mapping(source = "prtyLatitude", target = "latitude")
     })
     PartyDTO entityToDTO(TMsParty entity);
 

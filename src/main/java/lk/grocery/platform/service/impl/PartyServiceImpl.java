@@ -18,6 +18,7 @@ import lk.grocery.platform.service.CommonReferenceService;
 import lk.grocery.platform.service.PartyContactService;
 import lk.grocery.platform.service.PartyService;
 import lk.grocery.platform.service.UserService;
+import lk.grocery.platform.util.constant.CommonReferenceCodes;
 import lk.grocery.platform.util.constant.Constants;
 import lk.grocery.platform.config.EntityValidator;
 import lombok.extern.slf4j.Slf4j;
@@ -32,6 +33,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import static lk.grocery.platform.util.constant.CommonReferenceCodes.PARTY_TYPE_VENDOR;
 import static lk.grocery.platform.util.constant.CommonReferenceTypeCodes.*;
 import static lk.grocery.platform.util.constant.Constants.STATUS_ACTIVE;
 
@@ -65,27 +67,16 @@ public class PartyServiceImpl extends EntityValidator implements PartyService {
     @Override
     public PartyDTO createParty(PartyDTO partyDTO) {
 
-        String partyNumber = null;
         validateEntity(partyDTO);
 
         partyDTO.setName(partyDTO.getFirstName() + " " + partyDTO.getLastName());
-        partyDTO.setBranchId(captureBranchIds().get(0));
-        partyDTO.setPassport(Strings.isNullOrEmpty(partyDTO.getPassport()) ? null : partyDTO.getPassport());
 
-        final TMsParty tMsParty = PartyMapper.INSTANCE.dtoToEntity(partyDTO);
+        TMsParty tMsParty = PartyMapper.INSTANCE.dtoToEntity(partyDTO);
 
         populateAndValidatePartyReferenceDetailsOnPersist(tMsParty, partyDTO);
 
-        try {
-            partyNumber = numberGeneratorRepository.generateNumber("CU", "Y", "#", "#",
-                    "#", "#", "#", "#");
-        } catch (Exception e) {
-            log.error("Error while creating a Party Code : " + e.getMessage());
-            throw new OperationException("Error while creating a Party Code");
-        }
-
         tMsParty.setPrtyStatus(STATUS_ACTIVE.getShortValue());
-        tMsParty.setPrtyCode(partyNumber);
+        tMsParty.setPrtyCode(createPartyCode(partyDTO.getType()));
 
         final TMsParty createdParty = persistEntity(tMsParty);
 
@@ -101,6 +92,29 @@ public class PartyServiceImpl extends EntityValidator implements PartyService {
         }
 
         return PartyMapper.INSTANCE.entityToDTO(createdParty);
+    }
+
+    private String createPartyCode(String partyType) {
+
+        String createdPartyCode = null;
+        String refNumType = null;
+
+        CommonReferenceCodes partyTypeEum = CommonReferenceCodes.findByString(partyType);
+
+        try {
+            switch (partyTypeEum) {
+                case PARTY_TYPE_VENDOR: refNumType = "VN"; break;
+                case PARTY_TYPE_CUSTOMER: refNumType = "CU"; break;
+                default: throw new OperationException("Party type not found");
+            }
+            createdPartyCode = numberGeneratorRepository.generateNumber(refNumType, "Y", "#", "#", "#", "#");
+
+        } catch (Exception e) {
+            log.error("Error while creating a Party Code : " + e.getMessage());
+            throw new OperationException("Error while creating a Party Code");
+        }
+
+        return createdPartyCode;
     }
 
     @Transactional
@@ -124,7 +138,6 @@ public class PartyServiceImpl extends EntityValidator implements PartyService {
     public PartyDTO updateParty(String partyCode, PartyDTO partyDTO) {
 
         validateEntity(partyDTO);
-        partyDTO.setBranchId(captureBranchIds().get(0));
 
         TMsParty tMsParty = validateByPartyCode(partyCode);
 

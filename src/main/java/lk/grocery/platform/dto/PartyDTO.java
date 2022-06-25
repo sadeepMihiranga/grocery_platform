@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -28,11 +29,7 @@ public class PartyDTO implements Paginated {
     private String gender;
     private String genderName;
     private String nic;
-    private String passport;
     private String type;
-    private String departmentCode;
-    private String departmentName;
-    private Long branchId;
     private String managedBy;
     private String managedByName;
     private Short status;
@@ -40,5 +37,7 @@ public class PartyDTO implements Paginated {
     private String createdUserCode;
     private LocalDateTime lastUpdatedDate;
     private String lastUpdatedUserCode;
+    private BigDecimal longitude;
+    private BigDecimal latitude;
     private List<PartyContactDTO> contactList;
 }

@@ -2,6 +2,5 @@ package lk.grocery.platform.service;
 
 public interface NumberGeneratorService {
 
-    String generateNumber(String refNumType, String increase, String subTypeRef1, String subTypeRef2, String subTypeRef3,
-                          String subTypeRef4, String year, String month);
+    String generateNumber(String refNumType, String increase, String subTypeRef1, String subTypeRef2, String year, String month);
 }
