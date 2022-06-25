@@ -21,22 +21,18 @@ import java.util.Map;
 public class DropDownServiceImpl implements DropDownService {
 
     private static final String BRANCHES = "BRANCH";
-    private static final String DEPARTMENTS = "DEPART";
     private static final String PERMISSIONS = "PERMIS";
     private static final String ROLES = "ROLES";
     private static final String CUSTOMERS = "CUSTM";
     private static final String EMPLOYEES = "EMPLY";
-    private static final String ROOM_TYPES = "ROMTP";
-    private static final String FACILITY_TYPES = "FCLTP";
-    private static final String FACILITIES = "FCLTY";
     private static final String MEASUREMENTS_UNITS = "UOFMS";
     private static final String ITEM_TYPES = "ITMTP";
-    private static final String PAYMENT_TYPES = "PAYTP";
-    private static final String BED_TYPES = "RMBDT";
+    private static final String PAYMENT_OPTIONS = "PAYOP";
 
     private final BranchService branchService;
     private final PartyService partyService;
     private final CommonReferenceService commonReferenceService;
+    private final PaymentOptionService paymentOptionService;
 
     private final FunctionRepository functionRepository;
     private final RoleRepository roleRepository;
@@ -44,11 +40,13 @@ public class DropDownServiceImpl implements DropDownService {
     public DropDownServiceImpl(BranchService branchService,
                                PartyService partyService,
                                CommonReferenceService commonReferenceService,
+                               PaymentOptionService paymentOptionService,
                                FunctionRepository functionRepository,
                                RoleRepository roleRepository) {
         this.branchService = branchService;
         this.partyService = partyService;
         this.commonReferenceService = commonReferenceService;
+        this.paymentOptionService = paymentOptionService;
         this.functionRepository = functionRepository;
         this.roleRepository = roleRepository;
     }
@@ -58,19 +56,12 @@ public class DropDownServiceImpl implements DropDownService {
 
         Map<String, String> dropDownCodes = new HashMap<>();
 
-        dropDownCodes.put("BRANCHES", BRANCHES);
-        dropDownCodes.put("DEPARTMENTS", DEPARTMENTS);
         dropDownCodes.put("PERMISSIONS", PERMISSIONS);
         dropDownCodes.put("ROLES", ROLES);
         dropDownCodes.put("CUSTOMERS", CUSTOMERS);
         dropDownCodes.put("EMPLOYEES", EMPLOYEES);
-        dropDownCodes.put("ROOM_TYPES", ROOM_TYPES);
-        dropDownCodes.put("FACILITIES", FACILITIES);
-        dropDownCodes.put("FACILITY_TYPES", FACILITY_TYPES);
         dropDownCodes.put("MEASUREMENTS_UNITS", MEASUREMENTS_UNITS);
-        dropDownCodes.put("ITEM_TYPES", ITEM_TYPES);
-        dropDownCodes.put("PAYMENT_TYPES", PAYMENT_TYPES);
-        dropDownCodes.put("BED_TYPES", BED_TYPES);
+        dropDownCodes.put("PAYMENT_OPTIONS", PAYMENT_OPTIONS);
 
         return dropDownCodes;
     }
@@ -136,23 +127,22 @@ public class DropDownServiceImpl implements DropDownService {
                     ));
                 });
                 break;
-            case ROOM_TYPES :
-                downDTOList = populateFromCommonReference(ROOM_TYPES);
-                break;
-            case FACILITY_TYPES :
-                downDTOList = populateFromCommonReference(FACILITY_TYPES);
+            case PAYMENT_OPTIONS :
+                List<DropDownDTO> paymentOptions = downDTOList;
+                paymentOptionService.getPaymentOptions().forEach(paymentOptionDTO -> {
+                    paymentOptions.add(new DropDownDTO(
+                            paymentOptionDTO.getPaymentOptionId().toString(),
+                            paymentOptionDTO.getPaymentOptionName(),
+                            null,
+                            null
+                    ));
+                });
                 break;
             case MEASUREMENTS_UNITS :
                 downDTOList = populateFromCommonReference(MEASUREMENTS_UNITS);
                 break;
             case ITEM_TYPES :
                 downDTOList = populateFromCommonReference(ITEM_TYPES);
-                break;
-            case PAYMENT_TYPES :
-                downDTOList = populateFromCommonReference(PAYMENT_TYPES);
-                break;
-            case BED_TYPES :
-                downDTOList = populateFromCommonReference(BED_TYPES);
                 break;
             default:
                 throw new InvalidDataException("Requested Dropdown Code is invalid");

@@ -20,7 +20,7 @@ public class DropDownController {
     }
 
     @GetMapping("/{code}")
-    public ResponseEntity<SuccessResponse> getPartyByPartyId(@PathVariable("code") String code) throws IOException {
+    public ResponseEntity<SuccessResponse> getDropDownByCode(@PathVariable("code") String code) throws IOException {
         return SuccessResponseHandler.generateResponse(dropDownService.getDropDownByCode(code));
     }
 
