@@ -40,4 +40,5 @@ public class PartyDTO implements Paginated {
     private BigDecimal longitude;
     private BigDecimal latitude;
     private List<PartyContactDTO> contactList;
+    private List<UserDTO> users;
 }

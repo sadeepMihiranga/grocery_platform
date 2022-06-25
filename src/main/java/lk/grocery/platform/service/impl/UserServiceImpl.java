@@ -44,7 +44,6 @@ public class UserServiceImpl extends EntityValidator implements UserService, Use
     private final UserRoleRepository userRoleRepository;
     private final RoleFunctionRepository roleFunctionRepository;
     private final PartyRepository partyRepository;
-    //private final UserBranchRepository userBranchRepository;
     private final BranchRepository branchRepository;
 
     private final PartyContactService partyContactService;
@@ -56,7 +55,6 @@ public class UserServiceImpl extends EntityValidator implements UserService, Use
                            UserRoleRepository userRoleRepository,
                            RoleFunctionRepository roleFunctionRepository,
                            PartyRepository partyRepository,
-                           //UserBranchRepository userBranchRepository,
                            BranchRepository branchRepository,
                            PartyContactService partyContactService,
                            PasswordEncoder passwordEncoder) {
@@ -65,7 +63,6 @@ public class UserServiceImpl extends EntityValidator implements UserService, Use
         this.userRoleRepository = userRoleRepository;
         this.roleFunctionRepository = roleFunctionRepository;
         this.partyRepository = partyRepository;
-        //this.userBranchRepository = userBranchRepository;
         this.branchRepository = branchRepository;
         this.partyContactService = partyContactService;
         this.passwordEncoder = passwordEncoder;

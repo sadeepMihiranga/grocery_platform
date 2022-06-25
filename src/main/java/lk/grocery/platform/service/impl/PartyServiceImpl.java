@@ -1,5 +1,6 @@
 package lk.grocery.platform.service.impl;
 
+import lk.grocery.platform.dto.*;
 import lk.grocery.platform.exception.DataNotFoundException;
 import lk.grocery.platform.exception.InvalidDataException;
 import lk.grocery.platform.exception.OperationException;
@@ -7,10 +8,6 @@ import lk.grocery.platform.exception.TransactionConflictException;
 import lk.grocery.platform.repository.BranchRepository;
 import lk.grocery.platform.repository.NumberGeneratorRepository;
 import lk.grocery.platform.repository.PartyRepository;
-import lk.grocery.platform.dto.CommonReferenceDTO;
-import lk.grocery.platform.dto.PaginatedEntity;
-import lk.grocery.platform.dto.PartyContactDTO;
-import lk.grocery.platform.dto.PartyDTO;
 import lk.grocery.platform.entity.TMsParty;
 import lk.grocery.platform.entity.TRfBranch;
 import lk.grocery.platform.mapper.PartyMapper;
@@ -89,6 +86,13 @@ public class PartyServiceImpl extends EntityValidator implements PartyService {
 
                 partyContactService.insertPartyContact(partyContactDTO, true);
             });
+        }
+
+        if(partyDTO.getUsers() != null && !partyDTO.getUsers().isEmpty()) {
+            for(UserDTO userDTO : partyDTO.getUsers()) {
+                userDTO.setPartyCode(createdParty.getPrtyCode());
+                userService.createUser(userDTO);
+            }
         }
 
         return PartyMapper.INSTANCE.entityToDTO(createdParty);
