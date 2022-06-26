@@ -8,11 +8,11 @@ import java.util.List;
 
 public interface PartyService {
 
-    PartyDTO createParty(PartyDTO partyDTO);
+    String createParty(PartyDTO partyDTO);
 
     PartyDTO getPartyByPartyCode(String partyCode);
 
-    PartyDTO updateParty(String partyCode, PartyDTO partyDTO);
+    Boolean updateParty(String partyCode, PartyDTO partyDTO);
 
     Boolean removeParty(String partyCode);
 

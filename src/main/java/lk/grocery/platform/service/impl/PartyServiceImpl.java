@@ -62,7 +62,7 @@ public class PartyServiceImpl extends EntityValidator implements PartyService {
 
     @Transactional
     @Override
-    public PartyDTO createParty(PartyDTO partyDTO) {
+    public String createParty(PartyDTO partyDTO) {
 
         validateEntity(partyDTO);
 
@@ -95,7 +95,7 @@ public class PartyServiceImpl extends EntityValidator implements PartyService {
             }
         }
 
-        return PartyMapper.INSTANCE.entityToDTO(createdParty);
+        return createdParty.getPrtyCode();
     }
 
     private String createPartyCode(String partyType) {
@@ -139,7 +139,7 @@ public class PartyServiceImpl extends EntityValidator implements PartyService {
 
     @Transactional
     @Override
-    public PartyDTO updateParty(String partyCode, PartyDTO partyDTO) {
+    public Boolean updateParty(String partyCode, PartyDTO partyDTO) {
 
         validateEntity(partyDTO);
 
@@ -175,7 +175,7 @@ public class PartyServiceImpl extends EntityValidator implements PartyService {
                 partyContactService.insertPartyContact(partyContactDTO, true);
         });
 
-        return PartyMapper.INSTANCE.entityToDTO(persistEntity(tMsParty));
+        return true;
     }
 
     private void populateAndValidatePartyReferenceDetailsOnPersist(TMsParty tMsParty, PartyDTO partyDTO) {

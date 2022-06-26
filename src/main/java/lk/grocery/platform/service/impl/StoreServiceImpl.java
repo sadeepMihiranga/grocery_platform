@@ -40,7 +40,7 @@ public class StoreServiceImpl extends EntityValidator implements StoreService {
 
     @Transactional
     @Override
-    public StoreDTO createStore(StoreDTO storeDTO) {
+    public Long createStore(StoreDTO storeDTO) {
 
         validateEntity(storeDTO);
 
@@ -49,7 +49,7 @@ public class StoreServiceImpl extends EntityValidator implements StoreService {
 
         TMsStore createdStore = persistEntity(tMsStore);
 
-        return getStoreById(createdStore.getStorId());
+        return createdStore.getStorId();
     }
 
     @Override
@@ -62,7 +62,7 @@ public class StoreServiceImpl extends EntityValidator implements StoreService {
 
     @Transactional
     @Override
-    public StoreDTO updateStore(Long storeId, StoreDTO storeDTO) {
+    public Boolean updateStore(Long storeId, StoreDTO storeDTO) {
 
         TMsStore tMsStore = validateStoreById(storeId);
 
@@ -80,7 +80,7 @@ public class StoreServiceImpl extends EntityValidator implements StoreService {
 
         persistEntity(tMsStore);
 
-        return getStoreById(storeId);
+        return true;
     }
 
     @Transactional

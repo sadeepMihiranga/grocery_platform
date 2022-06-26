@@ -5,11 +5,11 @@ import lk.grocery.platform.dto.StoreDTO;
 
 public interface StoreService {
 
-    StoreDTO createStore(StoreDTO storeDTO);
+    Long createStore(StoreDTO storeDTO);
 
     StoreDTO getStoreById(Long storeId);
 
-    StoreDTO updateStore(Long storeId, StoreDTO storeDTO);
+    Boolean updateStore(Long storeId, StoreDTO storeDTO);
 
     Boolean removeStore(Long storeId);
 

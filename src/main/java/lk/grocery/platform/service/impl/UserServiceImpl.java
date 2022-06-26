@@ -70,7 +70,7 @@ public class UserServiceImpl extends EntityValidator implements UserService, Use
 
     @Transactional
     @Override
-    public UserDTO createUser(UserDTO userDTO) {
+    public Long createUser(UserDTO userDTO) {
 
         validateEntity(userDTO);
 
@@ -116,7 +116,7 @@ public class UserServiceImpl extends EntityValidator implements UserService, Use
             });
         }
 
-        return getUserById(createdUser.getUserId());
+        return createdUser.getUserId();
     }
 
     @Transactional
@@ -127,7 +127,7 @@ public class UserServiceImpl extends EntityValidator implements UserService, Use
 
     @Transactional
     @Override
-    public UserDTO updateUser(Long userId, UserDTO userDTO) {
+    public Boolean updateUser(Long userId, UserDTO userDTO) {
 
         TMsUser tMsUser = validateUserById(userId);
 
@@ -150,7 +150,7 @@ public class UserServiceImpl extends EntityValidator implements UserService, Use
 
         assignRoleToUser(userId, newRoleList);
 
-        return null;
+        return true;
     }
 
     /*private void assignBranchToUser(UserDTO userDTO, TMsUser tMsUser) {

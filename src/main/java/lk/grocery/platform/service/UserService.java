@@ -11,7 +11,7 @@ import java.util.List;
 
 public interface UserService {
 
-    UserDTO createUser(UserDTO userDTO);
+    Long createUser(UserDTO userDTO);
 
     UserDTO getUserById(Long userId);
 
@@ -35,7 +35,5 @@ public interface UserService {
 
     TMsRole createRole(TMsRole role);
 
-    UserDTO updateUser(Long userId, UserDTO userDTO);
-
-
+    Boolean updateUser(Long userId, UserDTO userDTO);
 }
