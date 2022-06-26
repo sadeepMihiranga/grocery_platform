@@ -4,18 +4,24 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1ecab856-a4bc-4e36-9730-875a92052b4f" name="Changes" comment="Added store crud.&#10;Code refactoring.">
-      <change afterPath="$PROJECT_DIR$/src/main/java/lk/grocery/platform/dto/VendorStoreDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/lk/grocery/platform/entity/TMsVendorStore.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/lk/grocery/platform/mapper/VendorStoreMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/lk/grocery/platform/repository/VendorStoreRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/lk/grocery/platform/service/VendorStoreService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/lk/grocery/platform/service/impl/VendorStoreServiceImpl.java" afterDir="false" />
+    <list default="true" id="1ecab856-a4bc-4e36-9730-875a92052b4f" name="Changes" comment="Item Category dropdown added.&#10;Code refactoring.">
+      <change afterPath="$PROJECT_DIR$/src/main/java/lk/grocery/platform/controller/ItemController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/lk/grocery/platform/dto/ItemCategoryDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/lk/grocery/platform/entity/TRfItemCategory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/lk/grocery/platform/mapper/ItemCategoryMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/lk/grocery/platform/repository/ItemCategoryRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/lk/grocery/platform/service/ItemCategoryService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/lk/grocery/platform/service/impl/ItemCategoryServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/reports/images/ShopDecide_logo.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/lk/grocery/platform/controller/StoreController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/grocery/platform/controller/StoreController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/lk/grocery/platform/repository/PartyRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/grocery/platform/repository/PartyRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/lk/grocery/platform/service/StoreService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/grocery/platform/service/StoreService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/lk/grocery/platform/service/impl/StoreServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/grocery/platform/service/impl/StoreServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/lk/grocery/platform/repository/SequenceGeneratorRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/grocery/platform/repository/SequenceGeneratorRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/lk/grocery/platform/service/impl/DropDownServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/grocery/platform/service/impl/DropDownServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/reports/images/lakderana_logo.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/reports/invoice/invoice.jrxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/reports/invoice/invoice.jrxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/password_reset_link_email.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/password_reset_link_email.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/password_reset_link_email_with_username.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/password_reset_link_email_with_username.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/lk/grocery/platform/LakDeranaHmsApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/lk/grocery/platform/GroceryPlatformApplicationTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -86,10 +92,16 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources/reports/images" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.39770114" />
     <property name="settings.editor.selected.configurable" value="org.jetbrains.plugins.github.ui.GithubSettingsConfigurable" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\MyApps\grocery_platform\src\main\resources\reports\images" />
+    </key>
   </component>
   <component name="RunManager">
     <configuration name="GroceryPlatformApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
@@ -113,7 +125,10 @@
       <workItem from="1656034599916" duration="5008000" />
       <workItem from="1656081547249" duration="2588000" />
       <workItem from="1656122200446" duration="18791000" />
-      <workItem from="1656152436573" duration="3808000" />
+      <workItem from="1656152436573" duration="5386000" />
+      <workItem from="1656168017953" duration="1789000" />
+      <workItem from="1656213033038" duration="2508000" />
+      <workItem from="1656224878738" duration="4088000" />
     </task>
     <task id="LOCAL-00001" summary="build issue fixes.">
       <created>1655995672103</created>
@@ -227,7 +242,14 @@
       <option name="project" value="LOCAL" />
       <updated>1656146271197</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="Added vendors and employee management with stores.">
+      <created>1656156480676</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1656156480677</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -254,6 +276,8 @@
     <MESSAGE value="Code refactoring and bug fixes." />
     <MESSAGE value="Added user insert into the party create api." />
     <MESSAGE value="Added store crud.&#10;Code refactoring." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added store crud.&#10;Code refactoring." />
+    <MESSAGE value="Added vendors and employee management with stores." />
+    <MESSAGE value="Item Category dropdown added.&#10;Code refactoring." />
+    <option name="LAST_COMMIT_MESSAGE" value="Item Category dropdown added.&#10;Code refactoring." />
   </component>
 </project>

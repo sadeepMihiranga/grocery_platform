@@ -70,7 +70,7 @@ spring:
 
 email:
   callback:
-    host: ${HOST_IP:http://lakderana-hms-web.herokuapp.com/auth/reset-password}
+    host: ${HOST_IP:http://shopdecide-hms-web.herokuapp.com/auth/reset-password}
     port: 80
 
 reset:
@@ -80,7 +80,7 @@ reset:
 mail:
   host: smtp.gmail.com
   port: 587
-  username: lakderanahms@gmail.com
+  username: shopdecideonline@gmail.com
   password: asfdw532d#
   senderName: Lak Derana
   properties:

@@ -19,7 +19,7 @@ public class SequenceGeneratorRepository {
 	 * @return - Generated table sequence number
 	 */
 	public String generateSequenceNo(String tableName) {
-		StoredProcedureQuery storedProcedureQuery = entityManager.createStoredProcedureQuery("\"LAKDERANA_BASE\".\"F_CM_GEN_TAB_SEQUENCE\"");
+		StoredProcedureQuery storedProcedureQuery = entityManager.createStoredProcedureQuery("\"GROCERY_PLATFORM\".\"F_CM_GEN_TAB_SEQUENCE\"");
 		
 		// Set the parameters of the stored procedure.
 		String firstParam = "firstParam";

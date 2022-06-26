@@ -29,12 +29,16 @@ public class DropDownServiceImpl implements DropDownService {
     private static final String ITEM_TYPES = "ITMTP";
     private static final String PAYMENT_OPTIONS = "PAYOP";
     private static final String DELIVERY_OPTIONS = "DILOP";
+    private static final String ITEM_CATEGORY_TYPES = "ITCTP";
+    private static final String PARTY_TYPE = "PTYPE";
+    private static final String ITEM_CATEGORIES = "ITCAT";
 
     private final BranchService branchService;
     private final PartyService partyService;
     private final CommonReferenceService commonReferenceService;
     private final PaymentOptionService paymentOptionService;
     private final DeliveryOptionService deliveryOptionService;
+    private final ItemCategoryService itemCategoryService;
 
     private final FunctionRepository functionRepository;
     private final RoleRepository roleRepository;
@@ -44,6 +48,7 @@ public class DropDownServiceImpl implements DropDownService {
                                CommonReferenceService commonReferenceService,
                                PaymentOptionService paymentOptionService,
                                DeliveryOptionService deliveryOptionService,
+                               ItemCategoryService itemCategoryService,
                                FunctionRepository functionRepository,
                                RoleRepository roleRepository) {
         this.branchService = branchService;
@@ -51,6 +56,7 @@ public class DropDownServiceImpl implements DropDownService {
         this.commonReferenceService = commonReferenceService;
         this.paymentOptionService = paymentOptionService;
         this.deliveryOptionService = deliveryOptionService;
+        this.itemCategoryService = itemCategoryService;
         this.functionRepository = functionRepository;
         this.roleRepository = roleRepository;
     }
@@ -67,6 +73,9 @@ public class DropDownServiceImpl implements DropDownService {
         dropDownCodes.put("MEASUREMENTS_UNITS", MEASUREMENTS_UNITS);
         dropDownCodes.put("PAYMENT_OPTIONS", PAYMENT_OPTIONS);
         dropDownCodes.put("DELIVERY_OPTIONS", DELIVERY_OPTIONS);
+        dropDownCodes.put("ITEM_CATEGORY_TYPES", ITEM_CATEGORY_TYPES);
+        dropDownCodes.put("PARTY_TYPE", PARTY_TYPE);
+        dropDownCodes.put("ITEM_CATEGORIES", ITEM_CATEGORIES);
 
         return dropDownCodes;
     }
@@ -154,11 +163,28 @@ public class DropDownServiceImpl implements DropDownService {
                     ));
                 });
                 break;
+            case ITEM_CATEGORIES :
+                List<DropDownDTO> itemCategories = downDTOList;
+                itemCategoryService.getAllItemCategories().forEach(itemCategoryDTO -> {
+                    itemCategories.add(new DropDownDTO(
+                            itemCategoryDTO.getItemCategoryId().toString(),
+                            itemCategoryDTO.getItemCategoryName(),
+                            null,
+                            null
+                    ));
+                });
+                break;
             case MEASUREMENTS_UNITS :
                 downDTOList = populateFromCommonReference(MEASUREMENTS_UNITS);
                 break;
             case ITEM_TYPES :
                 downDTOList = populateFromCommonReference(ITEM_TYPES);
+                break;
+            case ITEM_CATEGORY_TYPES :
+                downDTOList = populateFromCommonReference(ITEM_CATEGORY_TYPES);
+                break;
+            case PARTY_TYPE :
+                downDTOList = populateFromCommonReference(PARTY_TYPE);
                 break;
             default:
                 throw new InvalidDataException("Requested Dropdown Code is invalid");
