@@ -10,7 +10,8 @@ public enum CommonReferenceTypeCodes {
     FACILITY_TYPES("FCLTP"),
     MEASUREMENT_TYPES("UOFMS"),
     ITEM_TYPES("ITMTP"),
-    PAYMENT_TYPES("PAYTP");
+    PAYMENT_TYPES("PAYTP"),
+    ITEM_CATEGORY_TYPE("ITCTP");
 
     private String value;
     private short shortValue;

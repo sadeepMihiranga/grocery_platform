@@ -20,8 +20,14 @@ public class DropDownController {
     }
 
     @GetMapping("/{code}")
-    public ResponseEntity<SuccessResponse> getDropDownByCode(@PathVariable("code") String code) throws IOException {
-        return SuccessResponseHandler.generateResponse(dropDownService.getDropDownByCode(code));
+    public ResponseEntity<SuccessResponse> getDropDownByCode(@PathVariable("code") String code) {
+        return SuccessResponseHandler.generateResponse(dropDownService.getDropDownByCode(code, null));
+    }
+
+    @GetMapping("/{code}/{subCode}")
+    public ResponseEntity<SuccessResponse> getDropDownByCodeAndSubCode(@PathVariable("code") String code,
+                                                                       @PathVariable("subCode") String subCode) {
+        return SuccessResponseHandler.generateResponse(dropDownService.getDropDownByCode(code, subCode));
     }
 
     @GetMapping("/check")

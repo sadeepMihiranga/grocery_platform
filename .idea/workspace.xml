@@ -5,23 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1ecab856-a4bc-4e36-9730-875a92052b4f" name="Changes" comment="Item Category dropdown added.&#10;Code refactoring.">
-      <change afterPath="$PROJECT_DIR$/src/main/java/lk/grocery/platform/controller/ItemController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/lk/grocery/platform/dto/ItemCategoryDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/lk/grocery/platform/entity/TRfItemCategory.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/lk/grocery/platform/mapper/ItemCategoryMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/lk/grocery/platform/repository/ItemCategoryRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/lk/grocery/platform/service/ItemCategoryService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/lk/grocery/platform/service/impl/ItemCategoryServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/reports/images/ShopDecide_logo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/lk/grocery/platform/dto/ItemBrandDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/lk/grocery/platform/entity/TRfItemBrand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/lk/grocery/platform/mapper/ItemBrandMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/lk/grocery/platform/repository/ItemBrandRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/lk/grocery/platform/service/ItemBrandService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/lk/grocery/platform/service/impl/ItemBrandServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/lk/grocery/platform/repository/SequenceGeneratorRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/grocery/platform/repository/SequenceGeneratorRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/lk/grocery/platform/controller/DropDownController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/grocery/platform/controller/DropDownController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/lk/grocery/platform/repository/ItemCategoryRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/grocery/platform/repository/ItemCategoryRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/lk/grocery/platform/service/DropDownService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/grocery/platform/service/DropDownService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/lk/grocery/platform/service/impl/DropDownServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/grocery/platform/service/impl/DropDownServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/reports/images/lakderana_logo.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/reports/invoice/invoice.jrxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/reports/invoice/invoice.jrxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/password_reset_link_email.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/password_reset_link_email.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/password_reset_link_email_with_username.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/password_reset_link_email_with_username.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/lk/grocery/platform/LakDeranaHmsApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/lk/grocery/platform/GroceryPlatformApplicationTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/lk/grocery/platform/service/impl/ItemCategoryServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/grocery/platform/service/impl/ItemCategoryServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/lk/grocery/platform/util/constant/CommonReferenceTypeCodes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/grocery/platform/util/constant/CommonReferenceTypeCodes.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -128,7 +125,8 @@
       <workItem from="1656152436573" duration="5386000" />
       <workItem from="1656168017953" duration="1789000" />
       <workItem from="1656213033038" duration="2508000" />
-      <workItem from="1656224878738" duration="4088000" />
+      <workItem from="1656224878738" duration="6750000" />
+      <workItem from="1656236742159" duration="864000" />
     </task>
     <task id="LOCAL-00001" summary="build issue fixes.">
       <created>1655995672103</created>
@@ -249,7 +247,14 @@
       <option name="project" value="LOCAL" />
       <updated>1656156480677</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="Item Category dropdown added.&#10;Code refactoring.">
+      <created>1656229698421</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1656229698421</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

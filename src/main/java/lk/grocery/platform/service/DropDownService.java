@@ -7,7 +7,7 @@ import java.util.Map;
 
 public interface DropDownService {
 
-    List<DropDownDTO> getDropDownByCode(String code);
+    List<DropDownDTO> getDropDownByCode(String code, String subCode);
 
     Map<String, String> getDropDownCodes();
 }

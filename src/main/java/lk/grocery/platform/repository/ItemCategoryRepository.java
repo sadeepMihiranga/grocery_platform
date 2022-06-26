@@ -8,4 +8,6 @@ import java.util.List;
 public interface ItemCategoryRepository extends JpaRepository<TRfItemCategory, Long> {
 
     List<TRfItemCategory> findByItctStatus(Short itctStatus);
+
+    List<TRfItemCategory> findByItctStatusAndItctCategoryType(Short itctStatus, String itctCategoryType);
 }

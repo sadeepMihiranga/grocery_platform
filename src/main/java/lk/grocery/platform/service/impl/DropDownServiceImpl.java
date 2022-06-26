@@ -32,6 +32,8 @@ public class DropDownServiceImpl implements DropDownService {
     private static final String ITEM_CATEGORY_TYPES = "ITCTP";
     private static final String PARTY_TYPE = "PTYPE";
     private static final String ITEM_CATEGORIES = "ITCAT";
+    private static final String ITEM_CATEGORIES_BY_ITEM_CATEGORY_TYPES = "ITBCT";
+    private static final String ITEM_BRANDS = "ITBRD";
 
     private final BranchService branchService;
     private final PartyService partyService;
@@ -39,6 +41,7 @@ public class DropDownServiceImpl implements DropDownService {
     private final PaymentOptionService paymentOptionService;
     private final DeliveryOptionService deliveryOptionService;
     private final ItemCategoryService itemCategoryService;
+    private final ItemBrandService itemBrandService;
 
     private final FunctionRepository functionRepository;
     private final RoleRepository roleRepository;
@@ -49,6 +52,7 @@ public class DropDownServiceImpl implements DropDownService {
                                PaymentOptionService paymentOptionService,
                                DeliveryOptionService deliveryOptionService,
                                ItemCategoryService itemCategoryService,
+                               ItemBrandService itemBrandService,
                                FunctionRepository functionRepository,
                                RoleRepository roleRepository) {
         this.branchService = branchService;
@@ -57,6 +61,7 @@ public class DropDownServiceImpl implements DropDownService {
         this.paymentOptionService = paymentOptionService;
         this.deliveryOptionService = deliveryOptionService;
         this.itemCategoryService = itemCategoryService;
+        this.itemBrandService = itemBrandService;
         this.functionRepository = functionRepository;
         this.roleRepository = roleRepository;
     }
@@ -76,12 +81,14 @@ public class DropDownServiceImpl implements DropDownService {
         dropDownCodes.put("ITEM_CATEGORY_TYPES", ITEM_CATEGORY_TYPES);
         dropDownCodes.put("PARTY_TYPE", PARTY_TYPE);
         dropDownCodes.put("ITEM_CATEGORIES", ITEM_CATEGORIES);
+        dropDownCodes.put("ITEM_CATEGORIES_BY_ITEM_CATEGORY_TYPES", ITEM_CATEGORIES_BY_ITEM_CATEGORY_TYPES);
+        dropDownCodes.put("ITEM_BRANDS", ITEM_BRANDS);
 
         return dropDownCodes;
     }
 
     @Override
-    public List<DropDownDTO> getDropDownByCode(String code) {
+    public List<DropDownDTO> getDropDownByCode(String code, String subCode) {
 
         if(Strings.isNullOrEmpty(code))
             throw new NoRequiredInfoException("Code is required");
@@ -169,6 +176,28 @@ public class DropDownServiceImpl implements DropDownService {
                     itemCategories.add(new DropDownDTO(
                             itemCategoryDTO.getItemCategoryId().toString(),
                             itemCategoryDTO.getItemCategoryName(),
+                            null,
+                            null
+                    ));
+                });
+                break;
+            case ITEM_CATEGORIES_BY_ITEM_CATEGORY_TYPES :
+                List<DropDownDTO> itemCategoriesByType = downDTOList;
+                itemCategoryService.getItemCategoriesByType(subCode).forEach(itemCategoryDTO -> {
+                    itemCategoriesByType.add(new DropDownDTO(
+                            itemCategoryDTO.getItemCategoryId().toString(),
+                            itemCategoryDTO.getItemCategoryName(),
+                            null,
+                            null
+                    ));
+                });
+                break;
+            case ITEM_BRANDS :
+                List<DropDownDTO> itemBrands = downDTOList;
+                itemBrandService.getAllItemBrands().forEach(itemBrandDTO -> {
+                    itemBrands.add(new DropDownDTO(
+                            itemBrandDTO.getItemBrandId().toString(),
+                            itemBrandDTO.getItemBrandName(),
                             null,
                             null
                     ));
