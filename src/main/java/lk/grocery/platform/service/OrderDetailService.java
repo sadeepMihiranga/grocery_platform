@@ -7,4 +7,8 @@ import java.util.List;
 public interface OrderDetailService {
 
     Boolean addItemsToGoodsList(Long orderId, List<OrderDetailDTO> orderDetailDTOList);
+
+    Boolean removeItemFromList(Long orderId, Long itemId);
+
+    Boolean removeItemsFromList(Long orderId);
 }

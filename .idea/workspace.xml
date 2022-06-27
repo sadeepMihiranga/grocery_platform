@@ -4,36 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1ecab856-a4bc-4e36-9730-875a92052b4f" name="Changes" comment="Item brand dropdown added.&#10;Code refactoring.">
-      <change afterPath="$PROJECT_DIR$/src/main/java/lk/grocery/platform/controller/OrderController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/lk/grocery/platform/dto/OrderDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/lk/grocery/platform/dto/OrderDetailDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/lk/grocery/platform/entity/TMsItem.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/lk/grocery/platform/entity/TMsItemBrand.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/lk/grocery/platform/entity/TMsItemCategory.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/lk/grocery/platform/entity/TMsOrder.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/lk/grocery/platform/entity/TMsOrderDetail.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/lk/grocery/platform/mapper/OrderDetailMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/lk/grocery/platform/mapper/OrderMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/lk/grocery/platform/repository/OrderDetailRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/lk/grocery/platform/repository/OrderRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/lk/grocery/platform/service/OrderDetailService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/lk/grocery/platform/service/OrderService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/lk/grocery/platform/service/impl/OrderDetailServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/lk/grocery/platform/service/impl/OrderServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/lk/grocery/platform/util/constant/status/OrderUrgencyLevel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    <list default="true" id="1ecab856-a4bc-4e36-9730-875a92052b4f" name="Changes" comment="Create goods list functions.&#10;Code refactoring.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/lk/grocery/platform/service/PartyService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/grocery/platform/service/PartyService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/lk/grocery/platform/service/StoreService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/grocery/platform/service/StoreService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/lk/grocery/platform/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/grocery/platform/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/lk/grocery/platform/controller/OrderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/grocery/platform/controller/OrderController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/lk/grocery/platform/entity/TMsOrder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/grocery/platform/entity/TMsOrder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/lk/grocery/platform/repository/OrderDetailRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/grocery/platform/repository/OrderDetailRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/lk/grocery/platform/repository/OrderRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/grocery/platform/repository/OrderRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/lk/grocery/platform/service/OrderDetailService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/grocery/platform/service/OrderDetailService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/lk/grocery/platform/service/OrderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/grocery/platform/service/OrderService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/lk/grocery/platform/service/impl/OrderDetailServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/grocery/platform/service/impl/OrderDetailServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/lk/grocery/platform/service/impl/OrderServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/grocery/platform/service/impl/OrderServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/lk/grocery/platform/service/impl/PartyServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/grocery/platform/service/impl/PartyServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/lk/grocery/platform/service/impl/StoreServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/grocery/platform/service/impl/StoreServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/lk/grocery/platform/service/impl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/grocery/platform/service/impl/UserServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/lk/grocery/platform/util/constant/CommonReferenceTypeCodes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/grocery/platform/util/constant/CommonReferenceTypeCodes.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/lk/grocery/platform/util/constant/status/InquiryStatus.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/grocery/platform/util/constant/status/OrderStatus.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/lk/grocery/platform/util/constant/status/ReservationStatus.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/lk/grocery/platform/util/constant/status/RoomStatus.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/lk/grocery/platform/util/constant/status/OrderStatus.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/grocery/platform/util/constant/status/OrderStatus.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -161,7 +143,9 @@
       <workItem from="1656213033038" duration="2508000" />
       <workItem from="1656224878738" duration="6750000" />
       <workItem from="1656236742159" duration="9941000" />
-      <workItem from="1656255866160" duration="4373000" />
+      <workItem from="1656255866160" duration="6538000" />
+      <workItem from="1656313890899" duration="5178000" />
+      <workItem from="1656333524530" duration="5491000" />
     </task>
     <task id="LOCAL-00001" summary="build issue fixes.">
       <created>1655995672103</created>
@@ -296,7 +280,14 @@
       <option name="project" value="LOCAL" />
       <updated>1656237648314</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="Create goods list functions.&#10;Code refactoring.">
+      <created>1656260498203</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1656260498203</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -326,20 +317,26 @@
     <MESSAGE value="Added vendors and employee management with stores." />
     <MESSAGE value="Item Category dropdown added.&#10;Code refactoring." />
     <MESSAGE value="Item brand dropdown added.&#10;Code refactoring." />
-    <option name="LAST_COMMIT_MESSAGE" value="Item brand dropdown added.&#10;Code refactoring." />
+    <MESSAGE value="Create goods list functions.&#10;Code refactoring." />
+    <option name="LAST_COMMIT_MESSAGE" value="Create goods list functions.&#10;Code refactoring." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/lk/grocery/platform/service/impl/OrderServiceImpl.java</url>
-          <line>73</line>
-          <option name="timeStamp" value="1" />
+          <url>file://$PROJECT_DIR$/src/main/java/lk/grocery/platform/service/impl/PartyServiceImpl.java</url>
+          <line>77</line>
+          <option name="timeStamp" value="3" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/lk/grocery/platform/service/impl/OrderDetailServiceImpl.java</url>
-          <line>39</line>
-          <option name="timeStamp" value="2" />
+          <url>file://$PROJECT_DIR$/src/main/java/lk/grocery/platform/service/impl/PartyContactServiceImpl.java</url>
+          <line>42</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/lk/grocery/platform/service/impl/PartyServiceImpl.java</url>
+          <line>114</line>
+          <option name="timeStamp" value="5" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

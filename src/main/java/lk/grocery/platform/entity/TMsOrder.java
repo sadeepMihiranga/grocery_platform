@@ -32,4 +32,7 @@ public class TMsOrder extends AuditModel {
 
     @Column(name = "ODER_URGENCY_LEVEL")
     private Short oderUrgencyLevel;
+
+    @Column(name = "ODER_ACTIVE_STATUS")
+    private Short oderActiveStatus;
 }

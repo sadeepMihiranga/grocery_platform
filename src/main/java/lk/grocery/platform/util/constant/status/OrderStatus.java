@@ -6,7 +6,9 @@ public enum OrderStatus {
     PLACED,
     CONFIRMED,
     PREPARED,
-    DELIVERED;
+    COMPLETED,
+    DELETED,
+    REJECTED;
 
     private short shortValue;
     private String stringValue;

@@ -2,7 +2,6 @@ package lk.grocery.platform.service.impl;
 
 import lk.grocery.platform.config.EntityValidator;
 import lk.grocery.platform.dto.OrderDTO;
-import lk.grocery.platform.dto.OrderDetailDTO;
 import lk.grocery.platform.entity.TMsOrder;
 import lk.grocery.platform.entity.TMsParty;
 import lk.grocery.platform.exception.DataNotFoundException;
@@ -14,16 +13,18 @@ import lk.grocery.platform.repository.OrderRepository;
 import lk.grocery.platform.repository.PartyRepository;
 import lk.grocery.platform.service.OrderDetailService;
 import lk.grocery.platform.service.OrderService;
-import lk.grocery.platform.util.constant.status.OrderStatus;
 import lk.grocery.platform.util.constant.status.OrderUrgencyLevel;
 import lombok.extern.slf4j.Slf4j;
+import org.assertj.core.util.Strings;
 import org.springframework.orm.ObjectOptimisticLockingFailureException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
+import java.util.Optional;
 
 import static lk.grocery.platform.util.constant.Constants.STATUS_ACTIVE;
+import static lk.grocery.platform.util.constant.Constants.STATUS_INACTIVE;
 import static lk.grocery.platform.util.constant.status.OrderStatus.*;
 
 @Slf4j
@@ -48,10 +49,7 @@ public class OrderServiceImpl extends EntityValidator implements OrderService {
 
         validateEntity(orderDTO);
 
-        TMsParty customer = partyRepository.findByPrtyCodeAndPrtyStatus(orderDTO.getCustomerCode(), STATUS_ACTIVE.getShortValue());
-
-        if(customer == null)
-            throw new DataNotFoundException("Party not found for the Code : " + orderDTO.getCustomerCode());
+        TMsParty customer = validatePartyCode(orderDTO.getCustomerCode());
 
         if(orderDTO.getGoodsList().isEmpty())
             throw new NoRequiredInfoException("Goods list cannot be empty");
@@ -79,23 +77,76 @@ public class OrderServiceImpl extends EntityValidator implements OrderService {
     }
 
     @Override
-    public Boolean addItemToGoodsList(OrderDetailDTO orderDetailDTO) {
-        return null;
-    }
+    public Boolean clearGoodsList(Long orderId, boolean isRemoveRequest) {
 
-    @Override
-    public Boolean removeItemFromList(Long itemId, String customerCode) {
-        return null;
-    }
+        TMsOrder tMsOrder = validateOrderById(orderId);
 
-    @Override
-    public Boolean clearGoodsList(String customerCode) {
+        if(!tMsOrder.getOderStatus().equals(CREATED.toString()) && isRemoveRequest)
+            throw new OperationException("Cannot remove order at this stage");
+
+        if(isRemoveRequest) {
+            tMsOrder.setOderStatus(DELETED.toString());
+        } else {
+            tMsOrder.setOderStatus(COMPLETED.toString());
+        }
+
+        tMsOrder.setOderActiveStatus(STATUS_INACTIVE.getShortValue());
+
+        orderDetailService.removeItemsFromList(tMsOrder.getOderId());
+
+        persistEntity(tMsOrder);
+
+        /*List<TMsOrder> msOrderList = orderRepository.findByCustomer_PrtyCode(customerCode);
+
+        for(TMsOrder tMsOrder : msOrderList) {
+
+            if(tMsOrder.getOderStatus() != CREATED.toString() && isRemoveRequest)
+                throw new OperationException("Cannot remove order at this stage");
+
+            if(isRemoveRequest) {
+                tMsOrder.setOderStatus(DELETED.toString());
+            } else {
+                tMsOrder.setOderStatus(DELIVERED.toString());
+            }
+
+            tMsOrder.setOderActiveStatus(STATUS_INACTIVE.getShortValue());
+
+            orderDetailService.removeItemsFromList(tMsOrder.getOderId());
+
+            persistEntity(tMsOrder);
+        }*/
+
         return null;
     }
 
     @Override
     public OrderDTO getGoodsListByCustomer(String customerCode) {
         return null;
+    }
+
+    private TMsParty validatePartyCode(String partyCode) {
+
+        if(Strings.isNullOrEmpty(partyCode))
+            throw new NoRequiredInfoException("Customer code cannot be empty");
+
+        TMsParty party = partyRepository.findByPrtyCodeAndPrtyStatus(partyCode, STATUS_ACTIVE.getShortValue());
+
+        if(party == null)
+            throw new DataNotFoundException("Party not found for the Code : " + partyCode);
+
+        return party;
+    }
+
+    private TMsOrder validateOrderById(Long orderId) {
+        if(orderId == null)
+            throw new NoRequiredInfoException("Order Id is required");
+
+        Optional<TMsOrder> tMsOrder = orderRepository.findById(orderId);
+
+        if(!tMsOrder.isPresent())
+            throw new DataNotFoundException("Order not found for Id " + orderId);
+
+        return tMsOrder.get();
     }
 
     private TMsOrder persistEntity(TMsOrder tMsOrder) {

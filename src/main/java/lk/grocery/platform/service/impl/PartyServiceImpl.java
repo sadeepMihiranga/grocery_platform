@@ -109,6 +109,7 @@ public class PartyServiceImpl extends EntityValidator implements PartyService {
             switch (partyTypeEum) {
                 case PARTY_TYPE_VENDOR: refNumType = "VN"; break;
                 case PARTY_TYPE_CUSTOMER: refNumType = "CU"; break;
+                case PARTY_TYPE_EMPLOYEE: refNumType = "EM"; break;
                 default: throw new OperationException("Party type not found");
             }
             createdPartyCode = numberGeneratorRepository.generateNumber(refNumType, "Y", "#", "#", "#", "#");
