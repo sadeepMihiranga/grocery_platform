@@ -11,6 +11,7 @@ import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.ConstraintViolation;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -74,5 +75,16 @@ public class EntityValidator {
         return Pattern.compile(regexPattern)
                 .matcher(stringToMatch)
                 .matches();
+    }
+
+    protected final void validateLocation(BigDecimal longitude, BigDecimal latitude) {
+
+        if(longitude.longValue() < -180 || longitude.longValue() > 180) {
+            throw new InvalidDataException("Invalid longitude");
+        }
+
+        if(latitude.longValue() < -90 || latitude.longValue() > 90) {
+            throw new InvalidDataException("Invalid latitude");
+        }
     }
 }

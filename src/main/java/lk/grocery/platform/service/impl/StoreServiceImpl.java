@@ -44,6 +44,9 @@ public class StoreServiceImpl extends EntityValidator implements StoreService {
 
         validateEntity(storeDTO);
 
+        if(storeDTO.getLongitude() != null && storeDTO.getLatitude() != null)
+            validateLocation(storeDTO.getLongitude(), storeDTO.getLatitude());
+
         TMsStore tMsStore = StoreMapper.INSTANCE.dtoToEntity(storeDTO);
         tMsStore.setStorStatus(STATUS_ACTIVE.getShortValue());
 

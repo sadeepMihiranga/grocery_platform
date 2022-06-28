@@ -66,6 +66,9 @@ public class PartyServiceImpl extends EntityValidator implements PartyService {
 
         validateEntity(partyDTO);
 
+        if(partyDTO.getLongitude() != null && partyDTO.getLatitude() != null)
+            validateLocation(partyDTO.getLongitude(), partyDTO.getLatitude());
+
         partyDTO.setName(partyDTO.getFirstName() + " " + partyDTO.getLastName());
 
         TMsParty tMsParty = PartyMapper.INSTANCE.dtoToEntity(partyDTO);
