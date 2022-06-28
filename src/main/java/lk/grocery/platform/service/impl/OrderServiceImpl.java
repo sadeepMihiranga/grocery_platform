@@ -21,6 +21,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
 
 import static lk.grocery.platform.util.constant.Constants.STATUS_ACTIVE;
@@ -96,32 +97,22 @@ public class OrderServiceImpl extends EntityValidator implements OrderService {
 
         persistEntity(tMsOrder);
 
-        /*List<TMsOrder> msOrderList = orderRepository.findByCustomer_PrtyCode(customerCode);
-
-        for(TMsOrder tMsOrder : msOrderList) {
-
-            if(tMsOrder.getOderStatus() != CREATED.toString() && isRemoveRequest)
-                throw new OperationException("Cannot remove order at this stage");
-
-            if(isRemoveRequest) {
-                tMsOrder.setOderStatus(DELETED.toString());
-            } else {
-                tMsOrder.setOderStatus(DELIVERED.toString());
-            }
-
-            tMsOrder.setOderActiveStatus(STATUS_INACTIVE.getShortValue());
-
-            orderDetailService.removeItemsFromList(tMsOrder.getOderId());
-
-            persistEntity(tMsOrder);
-        }*/
-
         return null;
     }
 
     @Override
-    public OrderDTO getGoodsListByCustomer(String customerCode) {
+    public List<OrderDTO> getGoodsListByCustomer(String customerCode) {
         return null;
+    }
+
+    @Override
+    public OrderDTO getGoodsList(Long orderId) {
+
+        OrderDTO orderDTO = OrderMapper.INSTANCE.entityToDTO(validateOrderById(orderId));
+
+        orderDTO.setGoodsList(orderDetailService.getGoodsList(orderId));
+
+        return orderDTO;
     }
 
     private TMsParty validatePartyCode(String partyCode) {
@@ -145,6 +136,9 @@ public class OrderServiceImpl extends EntityValidator implements OrderService {
 
         if(!tMsOrder.isPresent())
             throw new DataNotFoundException("Order not found for Id " + orderId);
+
+        if(tMsOrder.get().getOderActiveStatus() != 1)
+            throw new OperationException("Order is in Inactive state");
 
         return tMsOrder.get();
     }

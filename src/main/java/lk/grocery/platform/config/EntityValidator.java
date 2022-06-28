@@ -14,6 +14,7 @@ import javax.validation.ConstraintViolation;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
+import java.util.regex.Pattern;
 
 @Slf4j
 public class EntityValidator {
@@ -67,5 +68,11 @@ public class EntityValidator {
 
         if (size < 1)
             throw new InvalidDataException("Limit should be a value greater than 0");
+    }
+
+    protected final boolean patternMatches(String stringToMatch, String regexPattern) {
+        return Pattern.compile(regexPattern)
+                .matcher(stringToMatch)
+                .matches();
     }
 }

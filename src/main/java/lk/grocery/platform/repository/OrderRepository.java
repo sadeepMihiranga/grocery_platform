@@ -8,4 +8,6 @@ import java.util.List;
 public interface OrderRepository extends JpaRepository<TMsOrder, Long> {
 
     List<TMsOrder> findByCustomer_PrtyCode(String prtyCode);
+
+    TMsOrder findByOderIdAndOderActiveStatus(Long oderId, Short oderActiveStatus);
 }

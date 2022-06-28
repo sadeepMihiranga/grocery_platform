@@ -111,6 +111,21 @@ public class OrderDetailServiceImpl extends EntityValidator implements OrderDeta
         return true;
     }
 
+    @Override
+    public List<OrderDetailDTO> getGoodsList(Long orderId) {
+
+        List<OrderDetailDTO> orderDetailDTOList = new ArrayList<>();
+
+        List<TMsOrderDetail> tMsOrderDetailList = orderDetailRepository
+                .findByOrder_OderIdAndOddtStatus(orderId, STATUS_ACTIVE.getShortValue());
+
+        for(TMsOrderDetail tMsOrderDetail : tMsOrderDetailList) {
+            orderDetailDTOList.add(OrderDetailMapper.INSTANCE.entityToDTO(tMsOrderDetail));
+        }
+
+        return orderDetailDTOList;
+    }
+
     private TMsOrder validateOrderById(Long orderId) {
         if(orderId == null)
             throw new NoRequiredInfoException("Order Id is required");

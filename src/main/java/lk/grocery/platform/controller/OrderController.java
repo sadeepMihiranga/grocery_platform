@@ -26,12 +26,13 @@ public class OrderController {
     }
 
     @PostMapping
-    public ResponseEntity<SuccessResponse> createGoodList(@RequestBody OrderDTO orderDTO) {
+    public ResponseEntity<SuccessResponse> createGoodsList(@RequestBody OrderDTO orderDTO) {
         return SuccessResponseHandler.generateResponse(orderService.createGoodsList(orderDTO));
     }
 
     @PostMapping("/{orderId}/item")
-    public ResponseEntity<SuccessResponse> createGoodList(@PathVariable("orderId") Long orderId, @RequestBody List<OrderDetailDTO> orderDetailDTOList) {
+    public ResponseEntity<SuccessResponse> addItemsToGoodsList(@PathVariable("orderId") Long orderId,
+                                                               @RequestBody List<OrderDetailDTO> orderDetailDTOList) {
         return SuccessResponseHandler.generateResponse(orderDetailService.addItemsToGoodsList(orderId, orderDetailDTOList));
     }
 
@@ -43,5 +44,10 @@ public class OrderController {
     @DeleteMapping("/{orderId}")
     public ResponseEntity<SuccessResponse> removeOrder(@PathVariable("orderId") Long orderId) {
         return SuccessResponseHandler.generateResponse(orderService.clearGoodsList(orderId, true));
+    }
+
+    @GetMapping("/{orderId}")
+    public ResponseEntity<SuccessResponse> getGoodsListByOrderId(@PathVariable("orderId") Long orderId) {
+        return SuccessResponseHandler.generateResponse(orderService.getGoodsList(orderId));
     }
 }

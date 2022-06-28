@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import static lk.grocery.platform.util.constant.CommonReferenceCodes.PARTY_CONTACT_EMAIL;
 import static lk.grocery.platform.util.constant.Constants.STATUS_ACTIVE;
 
 @Slf4j
@@ -47,6 +48,8 @@ public class PartyContactServiceImpl extends EntityValidator implements PartyCon
             throw new NoRequiredInfoException("Contact Type is required");
 
         validateEntity(partyContactDTO);
+
+        validateContactNumberFormat(partyContactDTO.getContactType(), partyContactDTO.getContactNumber());
 
         if(!isPartyValidated)
             tMsParty = validatePartyCode(partyContactDTO.getPartyCode());
@@ -147,6 +150,17 @@ public class PartyContactServiceImpl extends EntityValidator implements PartyCon
         });
 
         return true;
+    }
+
+    private void validateContactNumberFormat(String type, String contactNo) {
+
+        String regexPatter = "";
+
+        if(type.equals(PARTY_CONTACT_EMAIL.getValue()))
+            regexPatter = "^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$";
+
+        if(!patternMatches(contactNo, regexPatter))
+            throw new InvalidDataException(contactNo + " not received with expected format");
     }
 
     private TMsParty validatePartyCode(String partyCode) {
